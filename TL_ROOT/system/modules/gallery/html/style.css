@@ -1,0 +1,8 @@
+/* TYPOlight gallery style sheet */
+
+.singleSRC,.info { float:right; margin-left:10px; }
+.info { text-align:right;}
+
+.pagination p { float:right; }
+.pagination ul {margin:0; padding:0; list-style-type:none;}
+.pagination ul li { display:inline; }

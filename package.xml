@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE contaopackage>
+<extension name="gallery" date="20160719">
+    <author user="thyon" name="John Brand" website="http://www.thyon.com/" />
+    <copyright>&amp;copy; 2008-2012 Thyon Design</copyright>
+    <license>LGPL</license>
+    <classification type="free" category="application" />
+    <release version="80029" build="17" date="20120312" />
+    <contao minversion="20100003" maxversion="20110019" />
+    <requiredextension name="pagination_custom" minversion="10009" maxversion="10009" />
+    <language code="it">
+        <translator user="PaoloB" name="Paolo Brunelli" website="http://www.contaocms.it" />
+        <searchtags>gallery,image gallery,images,pictures</searchtags>
+        <title>Gallery</title>
+        <teaser>Permette di creare gruppi di gallerie di immagini. Singole, liste di immagini e con possibilità di avere i commenti degli utenti</teaser>
+        <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Gallery Collections (or archives) can be set-up to create protected groups, linked to pages, with artist member group restriction, default sort ordering, RSS feeds (yep, galleries in feeds), and of course searchable (just like News, Events, FAQ).&lt;/p&gt;
+&lt;p&gt;Gallery items had been vastly improved and you can now either manage individual artwork pieces or photo items with a single poster image or you can add an additional multiple-image gallery. This allows you to both catalog items with single photos or still create photo galleries of events with a nice poster image to represent the gallery (if you prefer to hide the gallery in the list view).&lt;/p&gt;
+&lt;p&gt;This &amp;nbsp;new version introduces the concept of categorisation of the art/photo pieces with galleries, e.g.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;author (BE user)&lt;/li&gt;
+&lt;li&gt;artist (FE member)&lt;/li&gt;
+&lt;li&gt;status (available, sold, reserved)&lt;/li&gt;
+&lt;li&gt;art size (A x B cm/mm/in/px)&lt;/li&gt;
+&lt;li&gt;medium (oil, acrylic, color print, etc.)&lt;/li&gt;
+&lt;li&gt;substrate (canvas, paper, photo, fabriano, etc.)&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;location&lt;/li&gt;
+&lt;li&gt;description&lt;/li&gt;
+&lt;li&gt;featured&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;published features start/stop as well&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All these above items or any additional category items can now be extended by other developers and filtered on automatically ([&#039;eval&#039;][&#039;feFilter&#039;] = true).&lt;/p&gt;
+&lt;h3&gt;Gallery List Module&lt;/h3&gt;
+&lt;p&gt;You can now list gallery items (now with odd/even classes) just like news items, with per page, featured, sorting restrictions. Then you can optionally also render the image gallery &amp;nbsp;(which still copies its style from CE Gallery). You can now also specify which meta fields must be displayed (qty, comments, author, substrate, medium, etc.).&amp;nbsp;&lt;/p&gt;
+&lt;h4&gt;List Filtering&lt;/h4&gt;
+&lt;p&gt;This is a great new addition. Which allows you to check boxes to pre-filter on any of the feFilters, e.g. status=available, medium=oil, etc. Then you can also activate the filtering menu, which creates an UL/LI nav rendering to allow you to quickly filter with a few mouse clicks the entire list of art/photo/galleries.&lt;/p&gt;
+&lt;h3&gt;Gallery List Page-Linked Module&lt;/h3&gt;
+&lt;p&gt;This works like the List module, but allows you to link a page to a archive and then you only need to have 1 layout shared for many pages. The module will look-up which page its on, search for that through the gallery collections and display only those collections. You can then additionally still filter using status, medium, substrate, etc.&lt;/p&gt;
+&lt;h3&gt;Gallery Viewer Module&lt;/h3&gt;
+&lt;p&gt;This simply configures the display of the detail page, similar to the listing module.&lt;/p&gt;
+&lt;h3&gt;Gallery Single Module&lt;/h3&gt;
+&lt;p&gt;This allows you to create a listing of 1 gallery item. This is a bit pointless on its own, but now becomes powerful in the creation of the inserttag reference.&lt;/p&gt;
+&lt;p&gt;{{insert_gallery::ID:MID}}&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;where ID is the gallery ID, and MID is the module ID of the Gallery Single Module. Basically, it loads the configuration of the Gallery Single Module, then re-assigns its module ID to the one you specified and then renders that into the inserttag output.&lt;/p&gt;
+&lt;h3&gt;Gallery Comments&lt;/h3&gt;
+&lt;p&gt;During the installation, your existing comments will be migrated to the new Contao integrated comments system.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;We hope that you will enjoy this new enhanced version.&lt;/p&gt;</description>
+        <releasenotes>&lt;h3&gt;!!!!IMPORTANT BEFORE YOU UPGRADE ON A PRODUCTION SITE!!!!!&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure you make a backup of your data, as we cannot guarantee against possible data loss&lt;/li&gt;
+&lt;li&gt;Note that your old comment e-mails will not work, as their urls to point to the comment edit screen will be invalid, as the Gallery Comments app is replaced by TL comments.&lt;/li&gt;
+&lt;li&gt;You will be required to re-edit and save your old Gallery Collections (Archives) and Gallery items to store new values for the new fields (e.g. poster image)&lt;/li&gt;
+&lt;li&gt;You will lose the Photographer variable, as we now use Members to indicate a Artist/Photographer (so we can link to a member Profile in the future), where we have added a description field to find out more about the Artist&lt;/li&gt;
+&lt;li&gt;You will have to create new templates as the old ones are now completely out of date and will not work. Also, the names of the templates had to change, as leo&#039;s CE Gallery was using gallery_xxx.tpl. The new names are gal_xxxx.tpl found in the templates/ folder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Build Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;various typing bugs crept into this release (thanks to everyone for spotting them)&lt;/li&gt;
+&lt;li&gt;fixed copy button url, as this prevented copying (permission error generated) (BE)&lt;/li&gt;
+&lt;li&gt;added ability to sort on title, in date mode, in case the date is identical (BE)&lt;/li&gt;
+&lt;li&gt;added star icon to BE for featured items&lt;/li&gt;
+&lt;li&gt;discovered some inconsistent code between List and PageList&lt;/li&gt;
+&lt;li&gt;corrected some more minor issues with Artist retrieval for the gallery item&#039;s drop-down list of artists&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;/ul&gt;</releasenotes>
+        <manual link="http://dev.contao.org/wiki/ExtensionsGallery" />
+        <forum link="http://www.contao-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="ru">
+        <translator user="mauldork" name="Alex Kruglov" />
+        <searchtags>галерея,галерея изображений,изображения,картинки</searchtags>
+        <title>Галерея</title>
+        <teaser>Создавайте группы галерей с помощью модулей: список, одиночная галерея и просмотрщик галерей и комментариями пользователей.</teaser>
+        <description>Модуль Gallery позволяет управлять галереями изображений вне Статей. Этот модуль работает аналогично Gallery CE, но использует собственные отдельные таблицы и позволяет добавить модули (аналогично новостям): список галерей, просмоторщик и одиночная галерея. Также вы можете использовать dfGallery для просмотра галереи.</description>
+        <releasenotes>&lt;ul&gt;
+&lt;li&gt;Добавлена совместимость абстрактного шаблона для TL 2.7&lt;/li&gt;
+&lt;li&gt;Modified to include new label groupings for TL 2.7 in BE App and Modules&lt;/li&gt;
+&lt;li&gt;Удалена поддержка формата даты, так как в TL 2.7 он получается из корня сайта&lt;/li&gt;
+&lt;li&gt;Изменен модуль dfGallery для работы с новой версией&lt;/li&gt;
+&lt;/ul&gt;</releasenotes>
+        <manual link="http://dev.typolight.org/wiki/ExtensionsGallery" />
+        <forum link="http://www.typolight.org/forum/topic/5481.html" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="en">
+        <translator user="thyon" name="John Brand" website="http://www.thyon.com/" />
+        <searchtags>gallery,artwork,photos,images,pictures</searchtags>
+        <title>Gallery</title>
+        <teaser>Create collections of artwork, photographs or galleries with filterable list and detail viewer with comments!</teaser>
+        <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Gallery Collections (or archives) can be set-up to create protected groups, linked to pages, with artist member group restriction, default sort ordering, RSS feeds (yep, galleries in feeds), and of course searchable (just like News, Events, FAQ).&lt;/p&gt;
+&lt;p&gt;Gallery items had been vastly improved and you can now either manage individual artwork pieces or photo items with a single poster image or you can add an additional multiple-image gallery. This allows you to both catalog items with single photos or still create photo galleries of events with a nice poster image to represent the gallery (if you prefer to hide the gallery in the list view).&lt;/p&gt;
+&lt;p&gt;This [nbsp]new version introduces the concept of categorisation of the art/photo pieces with galleries, e.g.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;author (BE user)&lt;/li&gt;
+&lt;li&gt;artist (FE member)&lt;/li&gt;
+&lt;li&gt;status (available, sold, reserved)&lt;/li&gt;
+&lt;li&gt;art size (A x B cm/mm/in/px)&lt;/li&gt;
+&lt;li&gt;medium (oil, acrylic, color print, etc.)&lt;/li&gt;
+&lt;li&gt;substrate (canvas, paper, photo, fabriano, etc.)[nbsp]&lt;/li&gt;
+&lt;li&gt;location&lt;/li&gt;
+&lt;li&gt;description&lt;/li&gt;
+&lt;li&gt;featured[nbsp]&lt;/li&gt;
+&lt;li&gt;published features start/stop as well&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All these above items or any additional category items can now be extended by other developers and filtered on automatically ([&#039;eval&#039;][&#039;feFilter&#039;] = true).&lt;/p&gt;
+&lt;h3&gt;Gallery List Module&lt;/h3&gt;
+&lt;p&gt;You can now list gallery items (now with odd/even classes) just like news items, with per page, featured, sorting restrictions. Then you can optionally also render the image gallery [nbsp](which still copies its style from CE Gallery). You can now also specify which meta fields must be displayed (qty, comments, author, substrate, medium, etc.).[nbsp]&lt;/p&gt;
+&lt;h4&gt;List Filtering&lt;/h4&gt;
+&lt;p&gt;This is a great new addition. Which allows you to check boxes to pre-filter on any of the feFilters, e.g. status=available, medium=oil, etc. Then you can also activate the filtering menu, which creates an UL/LI nav rendering to allow you to quickly filter with a few mouse clicks the entire list of art/photo/galleries.&lt;/p&gt;
+&lt;h3&gt;Gallery List Page-Linked Module&lt;/h3&gt;
+&lt;p&gt;This works like the List module, but allows you to link a page to a archive and then you only need to have 1 layout shared for many pages. The module will look-up which page its on, search for that through the gallery collections and display only those collections. You can then additionally still filter using status, medium, substrate, etc.&lt;/p&gt;
+&lt;h3&gt;Gallery Viewer Module&lt;/h3&gt;
+&lt;p&gt;This simply configures the display of the detail page, similar to the listing module.&lt;/p&gt;
+&lt;h3&gt;Gallery Single Module&lt;/h3&gt;
+&lt;p&gt;This allows you to create a listing of 1 gallery item. This is a bit pointless on its own, but now becomes powerful in the creation of the inserttag reference.&lt;/p&gt;
+&lt;p&gt;{{insert_gallery::ID:MID}}[nbsp]&lt;/p&gt;
+&lt;p&gt;where ID is the gallery ID, and MID is the module ID of the Gallery Single Module. Basically, it loads the configuration of the Gallery Single Module, then re-assigns its module ID to the one you specified and then renders that into the inserttag output.&lt;/p&gt;
+&lt;h3&gt;Gallery Comments&lt;/h3&gt;
+&lt;p&gt;During the installation, your existing comments will be migrated to the new Contao integrated comments system.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;We hope that you will enjoy this new enhanced version.&lt;/p&gt;</description>
+        <releasenotes>&lt;h3&gt;Build Fixes&lt;/h3&gt;
+&lt;p&gt;2012-03-12&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed: support for DFGallery (will add again if needed as an extension)&lt;/li&gt;
+&lt;li&gt;Added: Pagination class as a utility dependency (removed from main gallery)[nbsp]&lt;/li&gt;
+&lt;li&gt;Added: 2.10+ template compatibility&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Upgrade Notes from Older Gallery Systems (comments)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure you make a backup of your data, as we cannot guarantee against possible data loss&lt;/li&gt;
+&lt;li&gt;Note that your old comment e-mails will not work, as their urls to point to the comment edit screen will be invalid, as the Gallery Comments app is replaced by TL comments.&lt;/li&gt;
+&lt;li&gt;You will be required to re-edit and save your old Gallery Collections (Archives) and Gallery items to store new values for the new fields (e.g. poster image)&lt;/li&gt;
+&lt;li&gt;You will lose the Photographer variable, as we now use Members to indicate a Artist/Photographer (so we can link to a member Profile in the future), where we have added a description field to find out more about the Artist&lt;/li&gt;
+&lt;li&gt;You will have to create new templates as the old ones are now completely out of date and will not work. Also, the names of the templates had to change, as leo&#039;s CE Gallery was using gallery_xxx.tpl. The new names are gal_xxxx.tpl found in the templates/ folder.&lt;/li&gt;
+&lt;/ul&gt;</releasenotes>
+        <manual link="http://www.thyon.com/gallery.html" />
+        <forum link="http://www.contao-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/lab/donations" />
+    </language>
+    <language code="de">
+        <translator user="P_J" name="Pascal Wieland" website="http://www.pw-webcreations.de" />
+        <searchtags>Galerie,Bildergalerie,Bilder</searchtags>
+        <title>Galerie</title>
+        <teaser>Erstellen von Bildergalerie-Gruppen mit Listen-, Einzel- und Ansichtsmodulen</teaser>
+        <description>Das Galerie-Modul erlaubt es Ihnen, außerhalb eines Artikels Bildergalerien zu verwalten. Dieses Modul arbeitet ähnlich dem Galerie CE, aber es verwendet seine eigene Datenbank und Module, um eine Galerie-Liste, Ansichten und einzelne Galerien zu erstellen.</description>
+        <releasenotes>&lt;ul&gt; 
+&lt;li&gt;Korrektur eines kleinen Fehlers, der verhinderte, dass der Ort angezeigt wurde&lt;/li&gt; &lt;li&gt;Neue KlassePaginationCustom erstellt, die mit eingelagerten Galerien und Kommentaren zurechtkommt&lt;/li&gt; 
+&lt;li&gt;Zusätzliche Meta Parameters hinzugefügt: Fotograf, Ort&lt;/li&gt; 
+&lt;li&gt;Änderungen an Templates, um die obigen Meta Parameter zu unterstützen&lt;/li&gt; 
+&lt;li&gt;Ein neues Galerie-Anzeige-Modul wurde hinzugefügt, das dfGallery unterstützt (Nur Unterstützung für einzelne Hauptordner, Unterordner eingeschlossen)&lt;/li&gt; 
+&lt;li&gt;Galerie-Kommentare hinzugefügt&lt;/li&gt; &lt;/ul&gt;</releasenotes>
+        <manual link="http://dev.typolight.org/wiki/ExtensionsGallery" />
+        <forum link="http://www.typolight.org/forum/topic/5481.html" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="fr">
+        <translator user="cyril" name="Cyril Ponce" website="http://www.contao.fr" />
+        <title>Galerie</title>
+        <manual link="http://dev.typolight.org/wiki/ExtensionsGallery" />
+        <forum link="http://www.typolight-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="fa">
+        <translator user="respinar" name="Hamid Abbaszadeh" website="http://contao.ir/" />
+        <searchtags>gallery,artwork,photos,images,pictures</searchtags>
+        <title>آلبوم</title>
+        <teaser>Create collections of artwork, photographs or galleries with filterable list and detail viewer with comments!</teaser>
+        <manual link="http://www.thyon.com/gallery.html" />
+        <forum link="http://www.contao-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="nl">
+        <translator user="Vascom" name="Bart van Asperen" website="http://www.vascom.nl" />
+        <searchtags>gallery,artwork,photos,images,pictures</searchtags>
+        <title>Galerij</title>
+        <teaser>Maak collecties van kunst, foto&#039;s of galerijen met filtermogelijkheden en detailpagina&#039;s met reacties!</teaser>
+        <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Gallery Collections (or archives) can be set-up to create protected groups, linked to pages, with artist member group restriction, default sort ordering, RSS feeds (yep, galleries in feeds), and of course searchable (just like News, Events, FAQ).&lt;/p&gt;
+&lt;p&gt;Gallery items had been vastly improved and you can now either manage individual artwork pieces or photo items with a single poster image or you can add an additional multiple-image gallery. This allows you to both catalog items with single photos or still create photo galleries of events with a nice poster image to represent the gallery (if you prefer to hide the gallery in the list view).&lt;/p&gt;
+&lt;p&gt;This &amp;nbsp;new version introduces the concept of categorisation of the art/photo pieces with galleries, e.g.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;author (BE user)&lt;/li&gt;
+&lt;li&gt;artist (FE member)&lt;/li&gt;
+&lt;li&gt;status (available, sold, reserved)&lt;/li&gt;
+&lt;li&gt;art size (A x B cm/mm/in/px)&lt;/li&gt;
+&lt;li&gt;medium (oil, acrylic, color print, etc.)&lt;/li&gt;
+&lt;li&gt;substrate (canvas, paper, photo, fabriano, etc.)&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;location&lt;/li&gt;
+&lt;li&gt;description&lt;/li&gt;
+&lt;li&gt;featured&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;published features start/stop as well&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All these above items or any additional category items can now be extended by other developers and filtered on automatically ([&#039;eval&#039;][&#039;feFilter&#039;] = true).&lt;/p&gt;
+&lt;h3&gt;Gallery List Module&lt;/h3&gt;
+&lt;p&gt;You can now list gallery items (now with odd/even classes) just like news items, with per page, featured, sorting restrictions. Then you can optionally also render the image gallery &amp;nbsp;(which still copies its style from CE Gallery). You can now also specify which meta fields must be displayed (qty, comments, author, substrate, medium, etc.).&amp;nbsp;&lt;/p&gt;
+&lt;h4&gt;List Filtering&lt;/h4&gt;
+&lt;p&gt;This is a great new addition. Which allows you to check boxes to pre-filter on any of the feFilters, e.g. status=available, medium=oil, etc. Then you can also activate the filtering menu, which creates an UL/LI nav rendering to allow you to quickly filter with a few mouse clicks the entire list of art/photo/galleries.&lt;/p&gt;
+&lt;h3&gt;Gallery List Page-Linked Module&lt;/h3&gt;
+&lt;p&gt;This works like the List module, but allows you to link a page to a archive and then you only need to have 1 layout shared for many pages. The module will look-up which page its on, search for that through the gallery collections and display only those collections. You can then additionally still filter using status, medium, substrate, etc.&lt;/p&gt;
+&lt;h3&gt;Gallery Viewer Module&lt;/h3&gt;
+&lt;p&gt;This simply configures the display of the detail page, similar to the listing module.&lt;/p&gt;
+&lt;h3&gt;Gallery Single Module&lt;/h3&gt;
+&lt;p&gt;This allows you to create a listing of 1 gallery item. This is a bit pointless on its own, but now becomes powerful in the creation of the inserttag reference.&lt;/p&gt;
+&lt;p&gt;{{insert_gallery::ID:MID}}&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;where ID is the gallery ID, and MID is the module ID of the Gallery Single Module. Basically, it loads the configuration of the Gallery Single Module, then re-assigns its module ID to the one you specified and then renders that into the inserttag output.&lt;/p&gt;
+&lt;h3&gt;Gallery Comments&lt;/h3&gt;
+&lt;p&gt;During the installation, your existing comments will be migrated to the new Contao integrated comments system.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;We hope that you will enjoy this new enhanced version.&lt;/p&gt;</description>
+        <releasenotes>&lt;h3&gt;!!!!IMPORTANT BEFORE YOU UPGRADE ON A PRODUCTION SITE!!!!!&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure you make a backup of your data, as we cannot guarantee against possible data loss&lt;/li&gt;
+&lt;li&gt;Note that your old comment e-mails will not work, as their urls to point to the comment edit screen will be invalid, as the Gallery Comments app is replaced by TL comments.&lt;/li&gt;
+&lt;li&gt;You will be required to re-edit and save your old Gallery Collections (Archives) and Gallery items to store new values for the new fields (e.g. poster image)&lt;/li&gt;
+&lt;li&gt;You will lose the Photographer variable, as we now use Members to indicate a Artist/Photographer (so we can link to a member Profile in the future), where we have added a description field to find out more about the Artist&lt;/li&gt;
+&lt;li&gt;You will have to create new templates as the old ones are now completely out of date and will not work. Also, the names of the templates had to change, as leo&#039;s CE Gallery was using gallery_xxx.tpl. The new names are gal_xxxx.tpl found in the templates/ folder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Build Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;various typing bugs crept into this release (thanks to everyone for spotting them)&lt;/li&gt;
+&lt;li&gt;fixed copy button url, as this prevented copying (permission error generated) (BE)&lt;/li&gt;
+&lt;li&gt;added ability to sort on title, in date mode, in case the date is identical (BE)&lt;/li&gt;
+&lt;li&gt;added star icon to BE for featured items&lt;/li&gt;
+&lt;li&gt;discovered some inconsistent code between List and PageList&lt;/li&gt;
+&lt;li&gt;corrected some more minor issues with Artist retrieval for the gallery item&#039;s drop-down list of artists&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;/ul&gt;</releasenotes>
+        <manual link="http://dev.contao.org/wiki/ExtensionsGallery" />
+        <forum link="http://www.contao-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+    <language code="sv">
+        <translator user="SuperMatz" name="Matz Särås" website="http://www.xprofil.se" />
+        <searchtags>gallery,galleri,konstverk,verk,tavlor</searchtags>
+        <title>Galleri</title>
+        <teaser>Skapa samlingar av fotografier, konstverk eller gallerier med filtrerbara listor och detaljvyer med kommentarer!</teaser>
+        <description>&lt;h3&gt;Introduktion&lt;/h3&gt;
+&lt;p&gt;Gallerisamlingar (eller arkiv) kan skapas för att skapa skyddade grupper, länkade till sidor med behörigheter för artist-medlemsgrupper, standardsortering, RSS-flöden (Japp! Gallerier i flöden!) och självklart är de sökbara (precis som Nyheter, Händelser, FAQ o.s.v.).&lt;/p&gt;
+&lt;p&gt;Galleriföremål har blivit starkt förbättrade och du kan nu antingen hantera specifika fysiska konstverk eller bilder med en enda affischbild, eller så kan du lägga till ytterligare flerbilds-gallerier. Detta låter dig både katalogisera föremål med enkla foton eller skapa fotogallerier över händelser där en utvald &quot;affisch-bild&quot; representerar galleriets innehåll (om du föredrar att gömma galleriet i listvyer).&lt;/p&gt;
+&lt;p&gt;Denna version introducerar konceptet kategorisering av konstverk/fotografier med gallerier, t.ex.:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;författare (skapare av galleri) (BE Användare)&lt;/li&gt;
+&lt;li&gt;artist (FE Medlem)&lt;/li&gt;
+&lt;li&gt;status (tillgänglig, såld, reserverad)&lt;/li&gt;
+&lt;li&gt;föremålets storlek (A x B cm/mm/in/px)&lt;/li&gt;
+&lt;li&gt;medium (olja, akryl, färgtryck, etc.)&lt;/li&gt;
+&lt;li&gt;substrat (duk, papper, foto, fabriano, etc.)&amp;nbsp;&lt;/li&gt;
+&lt;li&gt;plats&lt;/li&gt;
+&lt;li&gt;beskrivning&lt;/li&gt;
+&lt;li&gt;utvalt&lt;/li&gt;
+&lt;li&gt;samt publiceringsfinesser som start/stopp-datum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alla de ovanstående, eller valfria kategorier utöver dessa, kan utökas av andra modulutvecklare som kan filtrera på dessa automatiskt ([&#039;eval&#039;][&#039;feFilter&#039;] = true).&lt;/p&gt;
+&lt;h3&gt;Gallerilista-modul&lt;/h3&gt;
+&lt;p&gt;Du kan nu lista galleriföremål (nu med odd/even-klasser) precis som nyhetsartiklar, antal per sida, utvalda, sorteringsrestriktioner. Sen kan du, om du vill, skapa bildgallerier (som använder samma stil som innehållselementet Galleri). Du kan dessutom specificera vilka metadata-fält som ska visas (antal, kommentarer, författare, substrat, medium etc.).&lt;/p&gt;
+&lt;h4&gt;List Filtering&lt;/h4&gt;
+&lt;p&gt;This is a great new addition. Which allows you to check boxes to pre-filter on any of the feFilters, e.g. status=available, medium=oil, etc. Then you can also activate the filtering menu, which creates an UL/LI nav rendering to allow you to quickly filter with a few mouse clicks the entire list of art/photo/galleries.&lt;/p&gt;
+&lt;h3&gt;Gallery List Page-Linked Module&lt;/h3&gt;
+&lt;p&gt;This works like the List module, but allows you to link a page to a archive and then you only need to have 1 layout shared for many pages. The module will look-up which page its on, search for that through the gallery collections and display only those collections. You can then additionally still filter using status, medium, substrate, etc.&lt;/p&gt;
+&lt;h3&gt;Gallery Viewer Module&lt;/h3&gt;
+&lt;p&gt;This simply configures the display of the detail page, similar to the listing module.&lt;/p&gt;
+&lt;h3&gt;Gallery Single Module&lt;/h3&gt;
+&lt;p&gt;This allows you to create a listing of 1 gallery item. This is a bit pointless on its own, but now becomes powerful in the creation of the inserttag reference.&lt;/p&gt;
+&lt;p&gt;{{insert_gallery::ID:MID}}&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;where ID is the gallery ID, and MID is the module ID of the Gallery Single Module. Basically, it loads the configuration of the Gallery Single Module, then re-assigns its module ID to the one you specified and then renders that into the inserttag output.&lt;/p&gt;
+&lt;h3&gt;Gallery Comments&lt;/h3&gt;
+&lt;p&gt;During the installation, your existing comments will be migrated to the new Contao integrated comments system.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;We hope that you will enjoy this new enhanced version.&lt;/p&gt;</description>
+        <releasenotes>&lt;h3&gt;!!!!VIKTIGT INNAN DU UPPGRADERAR PÅ EN PRODUKTIONSSAJT!!!!&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Se till att du gör en säkerhetskopia av dina data, eftersom vi inte kan garantera att inget data går förlorat.&lt;/li&gt;&lt;li&gt;Observera att dina gamla kommentar e-post inte kommer att fungera. Deras URLer pekar på redigeringsformulär för kommentarer vilka blir ogiltiga eftersom Gallery Kommentarer appen ersatts med TL comments.&lt;/li&gt;&lt;li&gt;Du kommer att behöva redigera och spara om alla dina gamla gallerisamlingar (arkiv) och Galleriföremål för att lagra nya värden för de nya fälten (t.ex. affischbild)&lt;/li&gt;&lt;li&gt;Du kommer att förlora Fotograf-variabel, eftersom vi nu använder Medlemmar för att ange en konstnär/fotograf (så att vi kan länka till en medlemsprofil i framtiden) där vi har lagt till ett fält för beskrivning som används för att få reda på mer om konstnären&lt;/li&gt;&lt;li&gt;Du måste skapa nya mallar eftersom de gamla nu är helt föråldrade och inte längre fungerar. Vi var även tvungna att byta mallarnas filnamn då Leo&#039;s CE Gallery använde gallery_xxx.tpl. De nya namnen är gal_xxxx.tpl och finns i templates-mappen. &lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;Build-fixar &lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Diverse skrivfel har smugit sig in i den här versionen (tack till alla som hittat dem)&lt;/li&gt;&lt;li&gt;Fixat kopiera-knappens URL då den förhindrade kopiering (behörighetsfel genererades) (BE)&lt;/li&gt;&lt;li&gt;Lagt till möjligheten att sortera på titel, i datum-läge, om datum är identiska (BE)&lt;/li&gt;&lt;li&gt;Lagt till stjärnikon i BE för utvalda föremål&lt;/li&gt;&lt;li&gt;Hittade lite inkonsekvent kod mellan List och PageList&lt;/li&gt;&lt;li&gt;Korrigerade några smärre problem med Artis-hämtning för galleriföremålens rullgardinsmeny med artister&lt;/li&gt;&lt;/ul&gt;&lt;/p&gt;&lt;ul&gt;&lt;/ul&gt;&lt;ul&gt;&lt;/ul&gt;</releasenotes>
+        <manual link="http://www.thyon.com/gallery.html" />
+        <forum link="http://www.contao-community.org/viewforum.php?f=30" />
+        <shop link="http://www.thyon.com/donations.html" />
+    </language>
+</extension>

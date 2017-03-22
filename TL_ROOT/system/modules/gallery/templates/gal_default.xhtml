@@ -1,0 +1,80 @@
+<div class="layout_default block<?php echo $this->class; ?>">
+
+<h2><?php echo ($this->linkTitle) ? $this->linkTitle : $this->title; ?></h2>
+<p class="info"><span class="date"><?php echo $this->date; ?></span> <?php if ($this->author): ?><span class="author"><?php echo $this->metaFields['author']; ?></span><?php endif; ?>
+<?php if ($this->total): ?><span class="total"> | <?php echo $this->qty; ?></span><?php endif; ?>
+<?php if ($this->metaFields['ccount']): ?> <span class="comments"><?php echo $this->metaFields['comments']; ?></span><?php endif; ?>
+</p>
+
+<?php if ($this->addImage): ?>
+
+<div class="image_container<?php echo $this->floatClass; ?>"<?php if ($this->margin || $this->float): ?> style="<?php echo trim($this->margin . $this->float); ?>"<?php endif; ?>>
+<?php if ($this->href): ?>
+<a href="<?php echo $this->href; ?>"<?php echo $this->attributes; ?> title="<?php echo $this->alt; ?>">
+<?php endif; ?>
+<img src="<?php echo $this->src; ?>"<?php echo $this->imgSize; ?> alt="<?php echo $this->alt; ?>" />
+<?php if ($this->href): ?>
+</a>
+<?php endif; ?>
+<?php if ($this->caption): ?>
+<div class="caption"><?php echo $this->caption; ?></div>
+<?php endif; ?>
+</div>
+<?php endif; ?>
+
+<?php if ($this->hasMetaFields): ?>
+<div class="meta">
+<?php if ($this->metaFields['location']): ?>
+<div class="location"><?php echo $this->location; ?></div>
+<?php endif; ?>
+<?php if ($this->metaFields['artist']): ?>
+<div class="artist"><?php echo $this->metaFields['artist']; ?></div>
+<?php endif; ?>
+<?php if ($this->metaFields['status']): ?>
+<div class="status"><?php echo $this->metaFields['status']; ?></div>
+<?php endif; ?>
+<?php if ($this->metaFields['artsize']): ?>
+<div class="artsize"><?php echo $this->metaFields['artsize']; ?></div>
+<?php endif; ?>
+<?php if ($this->metaFields['medium']): ?>
+<div class="medium"><?php echo $this->metaFields['medium']; ?></div>
+<?php endif; ?>
+<?php if ($this->metaFields['substrate']): ?>
+<div class="substrate"><?php echo $this->metaFields['substrate']; ?></div>
+<?php endif; ?>
+</div>
+<?php endif; ?>
+
+<?php if ($this->description): ?>
+<div class="description"><?php echo $this->description; ?></div>
+<?php endif; ?>
+
+<table cellspacing="0" cellpadding="0" summary="Image gallery">
+<tbody>
+<?php foreach ($this->body as $class=>$row): ?>
+<tr class="<?php echo $class; ?>">
+<?php foreach ($row as $col): ?>
+<?php if (!$col->addImage): ?>
+  <td class="<?php echo $col->class; ?> empty"> </td>
+<?php else: ?>
+  <td class="<?php echo $col->class; ?>" style="width:<?php echo $col->colWidth; ?>;">
+  <div class="image_container"<?php if ($col->margin): ?> style="<?php echo $col->margin; ?>"<?php endif; ?>>
+<?php if ($col->href): ?>
+    <a href="<?php echo $col->href; ?>"<?php echo $col->attributes; ?> title="<?php echo $col->alt; ?>"><img src="<?php echo $col->src; ?>"<?php echo $col->imgSize; ?> alt="<?php echo $col->alt; ?>" /></a>
+<?php else: ?>
+    <img src="<?php echo $col->src; ?>"<?php echo $col->imgSize; ?> alt="<?php echo $col->alt; ?>" />
+<?php endif; ?>
+<?php if ($col->caption): ?>
+    <div class="caption"><?php echo $col->caption; ?></div>
+<?php endif; ?>
+  </div>
+  </td>
+<?php endif; ?>
+<?php endforeach; ?>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+<?php echo $this->pagination; ?>
+
+</div>

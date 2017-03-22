@@ -1,0 +1,46 @@
+<?php if (!$this->searchable): ?>
+<!-- indexer::stop -->
+<?php endif; ?>
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<?php if (count($this->arrArchives)): ?>
+<div class="archives">
+<?php foreach($this->arrArchives as $archive): ?>
+<h1><?php echo $archive['title']; ?></h1>
+<div class="description"><?php echo $archive['description']; ?></div>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+<?php if (count($this->arrFilter)): ?>
+<div class="filter block">
+<?php foreach($this->arrFilter as $field=>$filter): ?>
+<?php if (count($filter['options'])): ?>
+<ul class="level_1">
+<li class="field <?php echo $field; ?> <?php echo $filter['class']; ?>"><span><?php echo $filter['label']; ?> »</span>
+<ul class="level_2">
+<?php foreach($filter['options'] as $key=>$option): ?>
+<li class="value option_<?php echo $key;?> <?php echo $option['class']; ?>"><?php if (strlen($option['href'])): ?><a href="<?php echo $option['href']; ?>"><?php echo $option['label']; ?></a><?php else: ?><span class="active"><?php echo $option['label']; ?></span><?php endif; ?></li>
+<?php endforeach; ?>
+</ul>
+</li>
+</ul>
+<?php endif; ?>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+
+
+
+<?php foreach($this->galleries as $gallery) echo $gallery; ?>
+<?php echo $this->pagination; ?>
+
+</div>
+<?php if (!$this->searchable): ?>
+<!-- indexer::continue -->
+<?php endif; ?>
